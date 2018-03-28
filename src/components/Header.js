@@ -1,53 +1,39 @@
 // Import libraries for making a component
 import React from 'react';
-import { Text, View, Image, TouchableHighlight} from 'react-native';
-import { DrawerNavigator  } from 'react-navigation';
+import { Text, View, Image, TouchableHighlight, StyleSheet, Button} from 'react-native';
+//import { DrawerNavigator  } from 'react-navigation';
 
+export default class Header extends React.Component {
+  // static navigationOptions = {
+  //   drawerLabel: 'Header',
+  //   drawerIcon: ({ tintColor }) => (
+  //     <Image
+  //       source={require('./../media/hamburger.png')}
+  //       style={[styles.icon, {tintColor: tintColor}]}
+  //     />
+  //   ),
+  // };
 
-// Make a component
-const Header = (props) => {
-  const { textStyle, viewStyle, imgstyle } = styles;
-
-  return (
-    <View style={viewStyle}>
-    
+  render() {
+    return (
+      <View>
+      <Button
+        onPress={() => this.props.navigation.navigate('DrawerOpen')}
+        title="Go to notifications from header"
+      />
       <TouchableHighlight 
-          onPress={()=> props.navigation.navigate('DrawerToggle')}>
+          onPress={()=> this.props.navigation.navigate('DrawerToggle')}>
                <Image style={{width:40, height:40}} 
          source={require('./../media/hamburger.png')}
                   />
       </TouchableHighlight>
-      
-      <Text style={textStyle}>{props.headerText}</Text>
-    </View>
-  );
-};
-
-const styles = {
-  viewStyle: {
-    flexDirection: 'row',
-    backgroundColor: '#F8F8F8',
-    height: 60,
-    paddingTop: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    elevation: 2,
-  },
-  textStyle: {
-    flex:1,
-    fontSize: 20,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-
-  },
-  imgstyle:{
-    flex:0.2,
-    width:null,
-    height:45,
-    justifyContent: 'flex-start',
+      </View>
+    );
   }
-};
-
-export default Header;
+}
+const styles = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  },
+});
